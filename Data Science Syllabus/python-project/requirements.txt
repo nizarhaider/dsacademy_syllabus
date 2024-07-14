@@ -1,1 +1,6 @@
 pandas 
+plotly
+sklearn
+numpy
+datetime
+prophet

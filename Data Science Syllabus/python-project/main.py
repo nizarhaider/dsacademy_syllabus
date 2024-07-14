@@ -7,10 +7,11 @@ import numpy as np
 from datetime import timedelta
 from prophet import Prophet
 
-st.write("""
-# Sri Lanka Tourist Arrivals Data Visualization
-Welcome to the interactive visualization of tourist arrivals in Sri Lanka.
-""")
+# Set the title and favicon that appear in the Browser's tab bar.
+st.set_page_config(
+    page_title='Tourist dashboard',
+    page_icon=':flag-lk:', # This is an emoji shortcode. Could be a URL too.
+)
 
 # Reading file
 df = pd.read_csv("tourist_data_weekly.csv")
@@ -20,7 +21,28 @@ df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
 # Sort the DataFrame by the date column
 df = df.sort_values(by='date')
 
-st.dataframe(df)
+
+'''
+# :flag-lk: Sri Lankan Tourist Dashboard
+
+This Dashboard compares the prediction of tourists arriving to Sri Lanka for the next 3 months using 2 machine learning models.
+
+**Project flow:** 
+1. Get data as a csv from [Sri Lankan Tourist Development Authority](https://www.sltda.gov.lk/en/statistics) website for tourist arrivals 
+2. Read the data using python
+3. Clean the data 
+4. Train and use Linear Regression model to predict tourists for the next 3 months
+5. Train and use FBProphet Timeseries model to forecast tourists for the next 3 months 
+6. Plot the results in charts using streamlit to visualize it
+7. Deploy project using streamlit 
+'''
+
+# Add some spacing
+''
+''
+
+''
+# st.dataframe(df)
 
 # Linear Regression to predict future tourists
 # Prepare the data
@@ -43,9 +65,20 @@ future_df = pd.DataFrame({'date': future_dates, 'Tourists': future_predictions})
 # Combine historical and future data
 combined_df = pd.concat([df[['date', 'Tourists Total']], future_df])
 
+
+fig = px.line(df, x='date', y=list(df.columns), labels={'date': 'Date', 'Tourists Total': 'Number of Tourists'})
+st.plotly_chart(fig)
+
 # Plot total tourists over time with future predictions (Linear Regression)
-st.subheader('Total Tourists Over Time with Linear Regression Predictions')
-fig = px.line(df, x='date', y='Tourists Total', title='Total Tourists Over Time with Predictions', labels={'date': 'Date', 'Tourists Total': 'Number of Tourists'})
+st.subheader('Prediction for Total Tourists')
+
+# st.line_chart(
+#     df,
+#     x='date',
+#     y='Tourists Total'
+# )
+
+fig = px.line(df, x='date', y='Tourists Total', title='Using Linear Regression Model', labels={'date': 'Date', 'Tourists Total': 'Number of Tourists'})
 fig.add_scatter(x=future_df['date'], y=future_df['Tourists'], mode='lines', name='Predicted Tourists', line=dict(dash='dot'))
 st.plotly_chart(fig)
 
@@ -60,8 +93,8 @@ future_prophet = prophet_model.make_future_dataframe(periods=90)
 forecast = prophet_model.predict(future_prophet)
 
 # Plot total tourists over time with future predictions (Facebook Prophet)
-st.subheader('Total Tourists Over Time with Facebook Prophet Predictions')
-fig = px.line(prophet_df, x='ds', y='y', title='Total Tourists Over Time with Predictions', labels={'ds': 'Date', 'y': 'Number of Tourists'})
+# st.subheader('Facebook Prophet Predictions')
+fig = px.line(prophet_df, x='ds', y='y', title='Using Facebook Prophet Predictions', labels={'ds': 'Date', 'y': 'Number of Tourists'})
 fig.add_scatter(x=forecast['ds'], y=forecast['yhat'], mode='lines', name='Predicted Tourists', line=dict(dash='dot'))
 st.plotly_chart(fig)
 
