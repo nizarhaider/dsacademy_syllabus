@@ -1,0 +1,73 @@
+WEEK 1
+- Setting Up Env
+- VSCode
+- Git
+- uv
+
+WEEK 2
+- Python Basics
+- Var
+- Data types
+- Lists & Dicts
+
+WEEK 3
+- Python intermediate I
+- Functions
+- libraries 
+(pandas, matplotlib, scikit learn, 
+json, boto3)
+
+WEEK 4
+- Data Manipulation w/ pandas
+
+WEEK 5
+- EDA
+
+WEEK 6
+- ML I
+- General concepts
+
+WEEK 7
+- ML II
+- Classification & Regression
+
+WEEK 8
+- ML III
+- Clustering
+
+WEEK 9
+- Tableau I
+
+WEEK 10
+- Tableau II
+
+WEEK 11
+- Tableau III
+
+WEEK 12
+- Databases I
+- basic SQL 
+
+WEEK 13
+- Databases II
+- MySQL
+
+WEEK 14
+- Databases III
+- Snowflake
+
+WEEK 15
+- Python Intermediate II
+- API's 
+(requests & openai)
+
+WEEK 16
+- Python Advanced
+- Flask
+- Generate frontend using llm
+
+WEEK 17
+- Hosting LLM App on AWS Lambda 
++ API Gateway
+
+
