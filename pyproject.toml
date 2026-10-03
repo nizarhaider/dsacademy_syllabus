@@ -1,0 +1,7 @@
+[project]
+name = "dsacademy-syllabus"
+version = "1.0.0"
+description = "DSAcademy Syllabus"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
